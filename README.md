@@ -3,3 +3,5 @@
 SFFS-CPR is a hybrid method that integrates two filters: Static Feature-wise Feature Selection (SFFS), which generalizes the Dynamic Feature-wise Feature Selection (DFFS), and frequency-based Constructive Pattern Recognition (CPR).
 
 --> The file **significant_features.pkl** contains the set of features dynamically selected by the Dynamic Feature-wise Feature Selection (DFFS) method for each dataset. To save you time, we have prepared this file in advance. Therefore, you can skip lines 112–206. It is in the "DFFS selected features folder". Simply update the file path in line 214 to match your local system, and load the corresponding significant_features.pkl file using lines 219–220. However, if you wish to apply DFFS to your own dataset, you must first load your dataset and then execute lines 219–220. The datasets used in the paper have already been preloaded in advance, spanning lines 18–105.
+
+--> SFFS utilizes the significant_features—a set of features selected by DFFS—and generalizes them by selecting a subset that is applicable across the entire dataset, as implemented in lines 226–253.
