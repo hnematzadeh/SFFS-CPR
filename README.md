@@ -8,7 +8,7 @@ SFFS-CPR is a hybrid method that integrates two filters: Static Feature-wise Fea
 
 --> CPR begins at line 262, where the response variable is reordered based on the sorted values of each feature, as implemented in lines 262–273. CPR performs feature sorting in lines 280–355.
 
-**Supplementary codes**
+**Supplementary codes and file:**
 
 --> Lines 486–850 compute the accuracy of the top 50 features selected by existing filters, including Fisher Score, Mutual Information, ReliefF, and others.
 
@@ -16,7 +16,7 @@ SFFS-CPR is a hybrid method that integrates two filters: Static Feature-wise Fea
 
 --> The correlation analysis presented in the paper is implemented in lines 2318–2383.
 
---> Stability analysis.py is the corresponding code for calculation the stability of the feature selection methods.
+--> Stability analysis.py is the corresponding file for calculation the stability of the feature selection methods.
 
 **Plots and visualizations of the SFFS-CPR:** 
 
