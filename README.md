@@ -23,6 +23,8 @@ SFFS-CPR is a hybrid method that integrates two filters: Static Feature-wise Fea
     - The accuracy, precision, recall, and F1 score of DFFS are evaluated through per-sample feature selection, as implemented in lines 425–458, corresponding to Figure 6 in the paper.
     
     - The accuracy of DFFS using the top 5 features is computed in lines 464–482, and plotted in lines 1144 1517, corresponding to Figure 5 in the paper.
+
+    - The box plot analysis is plotted in lines 1525-1622, corresponding to Figure 7 in the paper.
     
 
     
