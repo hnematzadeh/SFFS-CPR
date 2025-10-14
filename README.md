@@ -14,7 +14,7 @@ SFFS-CPR is a hybrid method that integrates two filters: Static Feature-wise Fea
 
 --> Lines 854–867 compute the prediction accuracy using all available features, evaluated with the Leave-One-Out strategy.
 
---> 
+--> The correlation analysis presented in the paper is implemented in lines 2318–2383.
 
 **Plots and visualizations of the SFFS-CPR:** 
 
