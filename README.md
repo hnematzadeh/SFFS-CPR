@@ -8,7 +8,7 @@ SFFS-CPR is a hybrid method that integrates two filters: Static Feature-wise Fea
 
 --> CPR begins at line 262, where the response variable is reordered based on the sorted values of each feature, as implemented in lines 262–273. CPR performs feature sorting in lines 280–355.
 
---> **Plots and visualizations of the SFFS-CPR** 
+**Plots and visualizations of the SFFS-CPR:** 
 
     - The accuracy of the top 50 features is computed in lines 364–412, corresponding to Figure 4 in the paper.
     
