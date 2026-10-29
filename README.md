@@ -1,3 +1,98 @@
+
+
+
+
+
+# SFFS-CPR: Sample-wise Frequency Feature Selection with Congestion-based Re-ranking
+
+Code for the experiments in the paper **"[Paper title]"** ([authors], [venue/year]).
+
+SFFS-CPR is a hybrid of two filters feature selection method for small-sample, high-dimensional data (e.g., gene expression):
+
+1. **DFFS** (sample-wise selection): each training sample is removed and compared with every class of the remaining samples. A feature is kept for that sample if its nearest class (smallest normalized variance) is the sample's true class.
+2. **SFFS** (frequency ranking): the top-L features of each sample (L = ceil(sqrt(m)/5), m = number of features) are counted, and features are ranked by how often they appear.
+3. **CPR** (re-ranking): the SFFS candidates are re-sorted by the aggregated separability score Sep = (A·S·D)^(1/3), computed from the run lengths of the class labels after sorting the samples by the feature value.
+
+## Experimental protocol (no information leakage)
+
+- Each dataset is split **once** into a stratified train (90%) and test (10%) set (`random_state=123`; plain split if a class is too small to stratify).
+- Every feature selection method uses the **training set only**.
+- Features are applied to train and test, a `DecisionTreeClassifier(random_state=42)` is fitted on the training set, and the accuracy is measured on the **same test set** for all methods.
+- Reported values: accuracy for the top-k features (k = 1, ..., 30), their mean, and the all-features baseline.
+- The DFFS radar/bar plots (Top 1-5, precision/recall/F1) use leave-one-out on the training set. Because DFFS picks each sample's features with that sample's own label, these values describe separability on the training data, not generalization accuracy.
+- The stability (bootstrap, Jaccard) and feature-correlation analyses use the full datasets because they characterize the selection procedure, not predictive performance.
+
+## Datasets
+
+Colon, CNS, GLI, SMK, Covid-19 (3 classes), Leukemia (3 classes), MLL (3 classes), SRBCT (4 classes). Datasets are **not included**; [add sources/links].
+Expected format: `.csv` or `.xlsx`, **no header**, one sample per row, class label in the **last column**. Set `DATA_DIR` at the top of each script.
+
+## Methods compared
+
+CPR, SFFS, SFFS-CPR, MPR, CEI, EMC, MC and DMC (the last two are binary only), Fisher score, Mutual Information, Pearson correlation, Chi-square, ReliefF, mRMR, and tree-based importances (Decision Tree, Random Forest, XGBoost).
+
+## Requirements
+
+Python 3.9, numpy, pandas, scikit-learn, scipy, matplotlib, openpyxl (for `.xlsx`), joblib, scikit-rebate (ReliefF), xgboost.
+
+```bash
+pip install numpy pandas scikit-learn scipy matplotlib openpyxl joblib scikit-rebate xgboost
+```
+
+## Usage
+
+```bash
+# 1. Edit DATA_DIR in the script, then run it
+python mean_accuracy_filters.py        # MPR, CEI, EMC, MC, DMC, CPR, SFFS-CPR (mean accuracy over top 1-30)
+python sffs_vs_sffs_cpr.py             # SFFS vs SFFS-CPR
+python baselines_top30.py              # SFFS-CPR vs Fisher, MI, Corr, Chi2, ReliefF
+python dffs_loo_top1_5.py              # DFFS Top 1-5 vs all features (radar plot numbers)
+python dffs_metrics.py                 # accuracy, precision, recall, F1: DFFS vs all features
+python plot_curves.py                  # accuracy curves from the saved CSV
+```
+
+Results (CSV tables) are written to the `*_results/` folders created in the current working directory.
+
+## Reproducibility
+
+Fixed seeds: data split `random_state=123`, decision tree `random_state=42`. With few samples, one test sample changes the accuracy by several percentage points, so use `SEEDS = list(range(10))` in the scripts for a mean ± std over splits.
+
+## Citation
+
+```bibtex
+@article{...,
+  title   = {...},
+  author  = {...},
+  journal = {...},
+  year    = {...}
+}
+```
+
+## License
+
+[e.g., MIT]
+
+## Contact
+
+[Name, affiliation, email]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # SFFS-CPR
 
 SFFS-CPR is a hybrid method that integrates two filters: Static Feature-wise Feature Selection (SFFS), which generalizes the Dynamic Feature-wise Feature Selection (DFFS), and frequency-based Constructive Pattern Recognition (CPR).
